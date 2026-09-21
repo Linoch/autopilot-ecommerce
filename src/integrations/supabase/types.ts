@@ -14,7 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      conversas: {
+        Row: {
+          canal: string
+          cliente: string
+          created_at: string
+          id: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          canal?: string
+          cliente: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          canal?: string
+          cliente?: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mensagens: {
+        Row: {
+          autor: string
+          conversa_id: string
+          created_at: string
+          id: string
+          texto: string
+          user_id: string
+        }
+        Insert: {
+          autor: string
+          conversa_id: string
+          created_at?: string
+          id?: string
+          texto: string
+          user_id?: string
+        }
+        Update: {
+          autor?: string
+          conversa_id?: string
+          created_at?: string
+          id?: string
+          texto?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mensagens_conversa_id_fkey"
+            columns: ["conversa_id"]
+            isOneToOne: false
+            referencedRelation: "conversas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      produtos: {
+        Row: {
+          canais: string[]
+          created_at: string
+          descricao: string | null
+          id: string
+          imagem_url: string | null
+          nome: string
+          palavras_chave: string | null
+          preco: number | null
+          titulo: string | null
+          user_id: string
+        }
+        Insert: {
+          canais?: string[]
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url?: string | null
+          nome: string
+          palavras_chave?: string | null
+          preco?: number | null
+          titulo?: string | null
+          user_id?: string
+        }
+        Update: {
+          canais?: string[]
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url?: string | null
+          nome?: string
+          palavras_chave?: string | null
+          preco?: number | null
+          titulo?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          loja: string | null
+          nome: string | null
+          plano: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          loja?: string | null
+          nome?: string | null
+          plano?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          loja?: string | null
+          nome?: string | null
+          plano?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
