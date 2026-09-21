@@ -10,11 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CanaisRouteImport } from './routes/canais'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as EstoqueRouteImport } from './routes/estoque'
+import { Route as PedidosRouteImport } from './routes/pedidos'
+import { Route as PlanosRouteImport } from './routes/planos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanaisRoute = CanaisRouteImport.update({
+  id: '/canais',
+  path: '/canais',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntrarRoute = EntrarRouteImport.update({
@@ -22,31 +31,69 @@ const EntrarRoute = EntrarRouteImport.update({
   path: '/entrar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EstoqueRoute = EstoqueRouteImport.update({
+  id: '/estoque',
+  path: '/estoque',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PedidosRoute = PedidosRouteImport.update({
+  id: '/pedidos',
+  path: '/pedidos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanosRoute = PlanosRouteImport.update({
+  id: '/planos',
+  path: '/planos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/canais': typeof CanaisRoute
   '/entrar': typeof EntrarRoute
+  '/estoque': typeof EstoqueRoute
+  '/pedidos': typeof PedidosRoute
+  '/planos': typeof PlanosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/canais': typeof CanaisRoute
   '/entrar': typeof EntrarRoute
+  '/estoque': typeof EstoqueRoute
+  '/pedidos': typeof PedidosRoute
+  '/planos': typeof PlanosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/canais': typeof CanaisRoute
   '/entrar': typeof EntrarRoute
+  '/estoque': typeof EstoqueRoute
+  '/pedidos': typeof PedidosRoute
+  '/planos': typeof PlanosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/entrar'
+  fullPaths: '/' | '/canais' | '/entrar' | '/estoque' | '/pedidos' | '/planos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/entrar'
-  id: '__root__' | '/' | '/entrar'
+  to: '/' | '/canais' | '/entrar' | '/estoque' | '/pedidos' | '/planos'
+  id:
+    | '__root__'
+    | '/'
+    | '/canais'
+    | '/entrar'
+    | '/estoque'
+    | '/pedidos'
+    | '/planos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CanaisRoute: typeof CanaisRoute
   EntrarRoute: typeof EntrarRoute
+  EstoqueRoute: typeof EstoqueRoute
+  PedidosRoute: typeof PedidosRoute
+  PlanosRoute: typeof PlanosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +105,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/canais': {
+      id: '/canais'
+      path: '/canais'
+      fullPath: '/canais'
+      preLoaderRoute: typeof CanaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/entrar': {
       id: '/entrar'
       path: '/entrar'
@@ -65,12 +119,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntrarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/estoque': {
+      id: '/estoque'
+      path: '/estoque'
+      fullPath: '/estoque'
+      preLoaderRoute: typeof EstoqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pedidos': {
+      id: '/pedidos'
+      path: '/pedidos'
+      fullPath: '/pedidos'
+      preLoaderRoute: typeof PedidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planos': {
+      id: '/planos'
+      path: '/planos'
+      fullPath: '/planos'
+      preLoaderRoute: typeof PlanosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CanaisRoute: CanaisRoute,
   EntrarRoute: EntrarRoute,
+  EstoqueRoute: EstoqueRoute,
+  PedidosRoute: PedidosRoute,
+  PlanosRoute: PlanosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
