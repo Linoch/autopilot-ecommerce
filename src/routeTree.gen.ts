@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CanaisRouteImport } from './routes/canais'
+import { Route as ChatbotRouteImport } from './routes/chatbot'
+import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as EstoqueRouteImport } from './routes/estoque'
 import { Route as PedidosRouteImport } from './routes/pedidos'
@@ -24,6 +26,16 @@ const IndexRoute = IndexRouteImport.update({
 const CanaisRoute = CanaisRouteImport.update({
   id: '/canais',
   path: '/canais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatbotRoute = ChatbotRouteImport.update({
+  id: '/chatbot',
+  path: '/chatbot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConteudoRoute = ConteudoRouteImport.update({
+  id: '/conteudo',
+  path: '/conteudo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntrarRoute = EntrarRouteImport.update({
@@ -50,6 +62,8 @@ const PlanosRoute = PlanosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/canais': typeof CanaisRoute
+  '/chatbot': typeof ChatbotRoute
+  '/conteudo': typeof ConteudoRoute
   '/entrar': typeof EntrarRoute
   '/estoque': typeof EstoqueRoute
   '/pedidos': typeof PedidosRoute
@@ -58,6 +72,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/canais': typeof CanaisRoute
+  '/chatbot': typeof ChatbotRoute
+  '/conteudo': typeof ConteudoRoute
   '/entrar': typeof EntrarRoute
   '/estoque': typeof EstoqueRoute
   '/pedidos': typeof PedidosRoute
@@ -67,6 +83,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/canais': typeof CanaisRoute
+  '/chatbot': typeof ChatbotRoute
+  '/conteudo': typeof ConteudoRoute
   '/entrar': typeof EntrarRoute
   '/estoque': typeof EstoqueRoute
   '/pedidos': typeof PedidosRoute
@@ -74,13 +92,31 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/canais' | '/entrar' | '/estoque' | '/pedidos' | '/planos'
+  fullPaths:
+    | '/'
+    | '/canais'
+    | '/chatbot'
+    | '/conteudo'
+    | '/entrar'
+    | '/estoque'
+    | '/pedidos'
+    | '/planos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/canais' | '/entrar' | '/estoque' | '/pedidos' | '/planos'
+  to:
+    | '/'
+    | '/canais'
+    | '/chatbot'
+    | '/conteudo'
+    | '/entrar'
+    | '/estoque'
+    | '/pedidos'
+    | '/planos'
   id:
     | '__root__'
     | '/'
     | '/canais'
+    | '/chatbot'
+    | '/conteudo'
     | '/entrar'
     | '/estoque'
     | '/pedidos'
@@ -90,6 +126,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CanaisRoute: typeof CanaisRoute
+  ChatbotRoute: typeof ChatbotRoute
+  ConteudoRoute: typeof ConteudoRoute
   EntrarRoute: typeof EntrarRoute
   EstoqueRoute: typeof EstoqueRoute
   PedidosRoute: typeof PedidosRoute
@@ -110,6 +148,20 @@ declare module '@tanstack/react-router' {
       path: '/canais'
       fullPath: '/canais'
       preLoaderRoute: typeof CanaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chatbot': {
+      id: '/chatbot'
+      path: '/chatbot'
+      fullPath: '/chatbot'
+      preLoaderRoute: typeof ChatbotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conteudo': {
+      id: '/conteudo'
+      path: '/conteudo'
+      fullPath: '/conteudo'
+      preLoaderRoute: typeof ConteudoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/entrar': {
@@ -146,6 +198,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CanaisRoute: CanaisRoute,
+  ChatbotRoute: ChatbotRoute,
+  ConteudoRoute: ConteudoRoute,
   EntrarRoute: EntrarRoute,
   EstoqueRoute: EstoqueRoute,
   PedidosRoute: PedidosRoute,
