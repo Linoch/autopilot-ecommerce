@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790015274218,
+      "tag": "0000_create_orbita_core",
+      "breakpoints": true
+    }
+  ]
 }
